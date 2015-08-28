@@ -40,13 +40,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addOnScrollListener(new RecyclerScrollListener() {
             @Override
             public void onShow() {
-                hideView();
+                showView();
             }
 
             @Override
             public void onHide() {
-
-                showView();
+                hideView();
             }
         });
 
@@ -61,15 +60,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showView() {
+        toolbar.animate().translationY(0).setDuration(500).setInterpolator(new AccelerateInterpolator(2));
+        imgBtn.animate().translationY(0).setDuration(500).setInterpolator(new AccelerateInterpolator(2)).start();
+
+    }
+
+    private void hideView() {
         toolbar.animate().translationY(-toolbar.getHeight()).setDuration(500).setInterpolator(new AccelerateInterpolator(2));
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) imgBtn.getLayoutParams();
         int bottom = lp.bottomMargin;
         imgBtn.animate().translationY(imgBtn.getHeight() + bottom).setDuration(500).setInterpolator(new AccelerateInterpolator(2)).start();
-    }
-
-    private void hideView() {
-        toolbar.animate().translationY(0).setDuration(500).setInterpolator(new AccelerateInterpolator(2));
-        imgBtn.animate().translationY(0).setDuration(500).setInterpolator(new AccelerateInterpolator(2)).start();
     }
 
     private void initToolbar(){
@@ -82,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ArrayList<String> getData(){
-//        if (mList != null){
-//            mList.clear();
-//        }
+        if (mList != null){
+            mList.clear();
+        }
         ArrayList<String> data = new ArrayList<String>();
         for (int i = 0; i< 20; i++){
             data.add("item" + i);
