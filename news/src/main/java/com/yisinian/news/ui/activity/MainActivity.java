@@ -20,9 +20,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         mTv = (TextView)findViewById(R.id.tv);
         mTv.setText("啊猫是大傻逼.....");
-//        mTv.setTextColor(getResources().getColor(android.R.color.holo_blue_light));
-        ToastUtils.showShort("NewsApplication oncreate()");
-        NewsLog.i(TAG, " oncreate()");
+        mTv.setTextColor(getResources().getColor(android.R.color.holo_blue_light));
+        ToastUtils.showShort("MianActivity oncreate()");
+        NewsLog.e(TAG, "oncreate()");
     }
 
 }

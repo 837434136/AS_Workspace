@@ -13,30 +13,61 @@ public class ToastUtils {
     public static Toast toast = null;
 
     private ToastUtils() {
+
     }
 
     private static void show(Context context, int resId, int duration) {
-        Toast.makeText(context, resId, duration).show();
+        if (toast == null){
+            toast = Toast.makeText(context, resId, duration);
+        }else {
+            toast.setText(resId);
+        }
+        toast.show();
     }
 
     private static void show(Context context, String message, int duration) {
-        Toast.makeText(context, message, duration).show();
+        if (toast == null) {
+            toast = Toast.makeText(context, message, duration);
+        }else {
+            toast.setText(message);
+        }
+        toast.show();
     }
 
     public static void showShort(int resId) {
-        Toast.makeText(NewsApplications.getInstance(), resId, Toast.LENGTH_SHORT).show();
+        if (toast == null){
+            toast = Toast.makeText(NewsApplications.getInstance(), resId, Toast.LENGTH_SHORT);
+        }else {
+            toast.setText(resId);
+        }
+        toast.show();
     }
 
     public static void showShort(String message) {
-        Toast.makeText(NewsApplications.getInstance(), message, Toast.LENGTH_SHORT).show();
+        if (toast == null){
+            toast = Toast.makeText(NewsApplications.getInstance(), message, Toast.LENGTH_SHORT);
+        }else {
+            toast.setText(message);
+        }
+        toast.show();
     }
 
     public static void showLong(int resId) {
-        Toast.makeText(NewsApplications.getInstance(), resId, Toast.LENGTH_LONG).show();
+        if(toast == null){
+            toast = Toast.makeText(NewsApplications.getInstance(), resId, Toast.LENGTH_LONG);
+        }else {
+            toast.setText(resId);
+        }
+        toast.show();
     }
 
     public static void showLong(String message) {
-        Toast.makeText(NewsApplications.getInstance(), message, Toast.LENGTH_LONG).show();
+        if(toast == null){
+            toast = Toast.makeText(NewsApplications.getInstance(), message, Toast.LENGTH_LONG);
+        }else {
+            toast.setText(message);
+        }
+        toast.show();
     }
 
 }

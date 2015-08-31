@@ -7,6 +7,10 @@ import android.util.Log;
  */
 public class NewsLog {
 
+    public NewsLog() {
+
+    }
+
     /**
      * This flag to indicate the log is enabled or disabled.
      */
@@ -33,7 +37,7 @@ public class NewsLog {
      */
     public static void d(String tag, String msg){
         if (isLogEnable){
-            StackTraceElement stackTraceElement = java.lang.Thread.currentThread().getStackTrace()[3];
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             Log.d(tag, rebuildMsg(stackTraceElement, msg));
         }
     }
@@ -46,7 +50,7 @@ public class NewsLog {
      */
     public static void i(String tag, String msg) {
         if (isLogEnable) {
-            StackTraceElement stackTraceElement = java.lang.Thread.currentThread().getStackTrace()[3];
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             Log.i(tag, rebuildMsg(stackTraceElement, msg));
         }
     }
@@ -59,7 +63,7 @@ public class NewsLog {
      */
     public static void v(String tag, String msg) {
         if (isLogEnable) {
-            StackTraceElement stackTraceElement = java.lang.Thread.currentThread().getStackTrace()[3];
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             Log.v(tag, rebuildMsg(stackTraceElement, msg));
         }
     }
@@ -72,7 +76,7 @@ public class NewsLog {
      */
     public static void w(String tag, String msg) {
         if (isLogEnable) {
-            StackTraceElement stackTraceElement = java.lang.Thread.currentThread().getStackTrace()[3];
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             Log.w(tag, rebuildMsg(stackTraceElement, msg));
         }
     }
@@ -85,7 +89,7 @@ public class NewsLog {
      */
     public static void e(String tag, String msg) {
         if (isLogEnable) {
-            StackTraceElement stackTraceElement = java.lang.Thread.currentThread().getStackTrace()[3];
+            StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
             Log.e(tag, rebuildMsg(stackTraceElement, msg));
         }
     }

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AS_Workspace.iml" filepath="$PROJECT_DIR$/AS_Workspace.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/news/news.iml" filepath="$PROJECT_DIR$/news/news.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zhihu/zhihu.iml" filepath="$PROJECT_DIR$/zhihu/zhihu.iml" />
     </modules>
   </component>
 </project>

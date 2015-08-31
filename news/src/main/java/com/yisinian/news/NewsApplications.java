@@ -3,12 +3,14 @@ package com.yisinian.news;
 import android.app.Application;
 import android.view.WindowManager;
 
+import com.yisinian.news.utils.NewsLog;
+
 /**
  * Created by deng 2015/8/28.
  */
 public class NewsApplications extends Application{
 
-    private final String TAG = getClass().getSimpleName();
+    private static final String TAG = NewsApplications.class.getSimpleName();
     private static NewsApplications mContext;
 
     /**开发者测试模式*/
@@ -27,7 +29,8 @@ public class NewsApplications extends Application{
 
     }
 
-    public static NewsApplications getInstance(){
+    public static NewsApplications getInstance() {
+        NewsLog.e(TAG, "getInstance()");
         return mContext;
     }
 
