@@ -10,6 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/TryEventBus_complex" />
+            <option value="$PROJECT_DIR$/TryEventBus_simple" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/news" />
             <option value="$PROJECT_DIR$/zhihu" />

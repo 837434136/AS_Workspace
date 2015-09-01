@@ -1,1 +1,1 @@
-include ':app', ':zhihu', ':news'
+include ':app', ':zhihu', ':news', ':TryEventBus_simple', ':TryEventBus_complex'

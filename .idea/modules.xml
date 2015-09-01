@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AS_Workspace.iml" filepath="$PROJECT_DIR$/AS_Workspace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TryEventBus_complex/TryEventBus_complex.iml" filepath="$PROJECT_DIR$/TryEventBus_complex/TryEventBus_complex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TryEventBus_simple/TryEventBus_simple.iml" filepath="$PROJECT_DIR$/TryEventBus_simple/TryEventBus_simple.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/news/news.iml" filepath="$PROJECT_DIR$/news/news.iml" />
       <module fileurl="file://$PROJECT_DIR$/zhihu/zhihu.iml" filepath="$PROJECT_DIR$/zhihu/zhihu.iml" />
