@@ -22,9 +22,16 @@ public class SecondActivity extends AppCompatActivity{
         mFirstEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(
-                        new FirstEvent("FirstEvent btn clicked")
-                );
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        EventBus.getDefault().post(
+                                new FirstEvent("FirstEvent btn clicked")
+                        );
+                    }
+                }).start();
+
             }
         });
     }

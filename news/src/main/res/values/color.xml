@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="color_primary_blue">#4571d5</color>
+    <color name="color_primary_blue_dark">#4561C5</color>
+    <color name="activity_main_color_text_normal">#CCCCCC</color>
+    <color name="activity_main_color_text_click">#ffffff</color>
+</resources>

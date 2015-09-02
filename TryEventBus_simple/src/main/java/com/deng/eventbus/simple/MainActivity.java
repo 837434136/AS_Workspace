@@ -37,14 +37,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //在主线程中接收消息，可以更新UI界面
     public void onEventMainThread(FirstEvent event){
 
         String msg = "onEventMainThread收到消息： " + event.getMsg();
         Log.d(TAG, "" + msg);
+        Log.d(TAG,"" + Thread.currentThread().getId());
+        btn.setText("我是主线程小贱人...");
         if (!TextUtils.isEmpty(msg)){
             tv.setText(msg);
             Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //在对应发送消息的线程中接收消息，需要更新UI组件的话要分清是主线程还是子线程发送过来的消息
+    public void onEvent(FirstEvent event){
+//        btn.setText("我是当前线程小贱人...");
+        Log.d(TAG, "onEvent 收到消息" + event.getMsg());
+        Log.d(TAG,"" + Thread.currentThread().getId());
     }
 
     @Override

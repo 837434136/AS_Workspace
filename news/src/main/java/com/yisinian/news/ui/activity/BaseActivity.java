@@ -2,7 +2,6 @@ package com.yisinian.news.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.yisinian.news.views.BaseView;
 
@@ -11,8 +10,6 @@ import com.yisinian.news.views.BaseView;
  * Description:base activity
  */
 public class BaseActivity extends AppCompatActivity implements BaseView {
-
-    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
