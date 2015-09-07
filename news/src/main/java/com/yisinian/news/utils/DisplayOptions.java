@@ -21,10 +21,10 @@ public class DisplayOptions {
                         // 设置图片加载/解码过程中错误时候显示的图片
                 .showImageOnFail(R.mipmap.ic_launcher)
                         // 设置下载的图片是否缓存在内存中
-                .cacheInMemory(false)
+                .cacheInMemory(true)
                         // 设置下载的图片是否缓存在sd卡中
                 .cacheOnDisc(true)
-                        // 保留exif信息
+                        // 保留exif信息  启动EXIF和JPEG图片模式
                 .considerExifParams(true)
                         // 设置图片以如何的编码方式显示
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)

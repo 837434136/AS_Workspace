@@ -1,83 +1,39 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@color/activity_main_color_text_normal">
+<?xml version="1.0" encoding="utf-8"?>
+<!--必须使用CoordinatorLayout才会有向上隐藏效果-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinatorLayout">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"/>
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <LinearLayout
+        <android.support.design.widget.TabLayout
+            android:id="@+id/main_tabs"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/activity_main_color_text_click"
+            app:tabTextColor="@color/activity_main_color_text_normal"
+            app:tabSelectedTextColor="@color/activity_main_color_text_click"/>
+    </android.support.design.widget.AppBarLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_content_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/activity_main_choice_height"
-                    android:layout_columnSpan="3"
-                    android:orientation="horizontal"
-                    android:background="?attr/colorPrimary"
-                    android:id="@+id/main_choice_rg">
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="热点"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:textSize="16sp"
-                        android:textColor="@color/activity_main_color_text_normal"
-                        android:id="@+id/main_hot_rb"
-                        android:checked="false"/>
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="校园"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:textSize="16sp"
-                        android:textColor="@color/activity_main_color_text_normal"
-                        android:id="@+id/main_school_rb"/>
-
-                    <RadioButton
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="学小秘"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:textSize="16sp"
-                        android:textColor="@color/activity_main_color_text_normal"
-                        android:id="@+id/main_secrety_rb"/>
-                </RadioGroup>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="70dp"
-                android:layout_height="3dp"
-                android:background="@android:color/white"
-                android:id="@+id/main_tab"/>
-        </LinearLayout>
-
-
-
-        <android.support.v4.view.ViewPager
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/main_content_vp">
-        </android.support.v4.view.ViewPager>
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

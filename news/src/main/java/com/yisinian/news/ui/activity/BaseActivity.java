@@ -2,7 +2,10 @@ package com.yisinian.news.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
+import com.yisinian.news.R;
+import com.yisinian.news.utils.NewsLog;
 import com.yisinian.news.views.BaseView;
 
 /**
@@ -11,9 +14,20 @@ import com.yisinian.news.views.BaseView;
  */
 public class BaseActivity extends AppCompatActivity implements BaseView {
 
+    private final String TAG = getClass().getSimpleName();
+    private Toolbar mToolbar;
+    protected int layoutResID = R.layout.activity_base;
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(layoutResID);
+        NewsLog.i(TAG, "--->onCreate()");
     }
 
     @Override

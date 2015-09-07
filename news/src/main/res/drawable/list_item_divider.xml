@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="100dp"
+    android:insetRight="100dp"
+    android:drawable="@color/material_blue_grey_800">
+
+</inset>

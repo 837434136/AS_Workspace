@@ -5,12 +5,11 @@ import android.content.Context;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.yisinian.news.api.ApiConstants;
 import com.yisinian.news.utils.NewsLog;
 
 import java.io.File;
@@ -64,8 +63,17 @@ public class NewsApplications extends Application{
      * 初始化ImageLoader
      */
     public static void initImageLoader(Context context) {
-        File cacheDir = StorageUtils.getOwnCacheDirectory(context,
-                "bee_k77/Cache");// 获取到缓存的目录地址
+        File cacheDir = null;
+        cacheDir = new File(ApiConstants.Paths.BASE_PATH, ApiConstants.Paths.IMAGE_LOADER_CACHE_PATH);
+        if (!cacheDir.exists()) {
+            try {
+                cacheDir.createNewFile();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
         Log.e("cacheDir", cacheDir.getPath());
         // 创建配置ImageLoader(所有的选项都是可选的,只使用那些你真的想定制)，这个可以设定在APPLACATION里面，设置为全局的配置参数
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
@@ -95,12 +103,12 @@ public class NewsApplications extends Application{
                         //硬盘缓存50MB
                 .diskCacheSize(50 * 1024 * 1024)
                         //将保存的时候的URI名称用MD5
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+//                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                         // 加密
-                .diskCacheFileNameGenerator(new HashCodeFileNameGenerator())//将保存的时候的URI名称用HASHCODE加密
+//                .diskCacheFileNameGenerator(new HashCodeFileNameGenerator())//将保存的时候的URI名称用HASHCODE加密
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
 //                .diskCacheFileCount(100) //缓存的File数量 与diskCacheSize()方法彼此功能重叠了。
-//                .diskCache(new UnlimitedDiskCache(cacheDir))// 自定义缓存路径
+                .diskCache(new UnlimitedDiskCache(cacheDir))// 自定义缓存路径
                         // .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
                         // .imageDownloader(new BaseImageDownloader(context, 5 * 1000,
                         // 30 * 1000)) // connectTimeout (5 s), readTimeout (30 s)超时时间

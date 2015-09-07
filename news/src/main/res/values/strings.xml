@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">News</string>
+    <string name="app_name">忆斯年</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="test_textview">猫</string>
+
+    <string name="main_toolbar_title">忆斯年日报</string>
+    <string name="main_hot">热点</string>
+    <string name="main_school">学校</string>
+    <string name="main_secretary">学小秘</string>
 </resources>
