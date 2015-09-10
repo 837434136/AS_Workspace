@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/widget_toolbar"/>
+
+    <TextView
+        android:id="@+id/web_toolbar_divider"
+        android:layout_below="@+id/base_app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:shadowColor="@android:color/black"
+        android:shadowRadius="5"
+        android:shadowDx="0"
+        android:shadowDy="0"/>
+
+    <ProgressBar
+        android:id="@+id/web_progressbar"
+        android:layout_below="@+id/web_toolbar_divider"
+        style="@style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:visibility="visible"
+        android:background="@color/activity_main_color_text_normal"/>
+
+    <FrameLayout
+        android:layout_below="@+id/web_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.yisinian.news.views.ScrollWebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:id="@+id/web_Rl_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/activity_main_color_text_normal"
+                android:shadowColor="@android:color/black"
+                android:shadowRadius="5"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:layout_marginBottom="@dimen/activity_web_bottom_height"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_web_bottom_height"
+                android:background="@color/activity_main_color_text_click"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:elevation="8dp">
+
+                <LinearLayout
+                    android:id="@+id/web_ll_share"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_share"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="13sp"
+                        android:text="@string/web_content_share"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/web_ll_thumb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/web_img_thumb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_thumb"/>
+
+                    <TextView
+                        android:id="@+id/web_tv_thumb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="13sp"
+                        android:text="@string/web_content_thumb"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/web_ll_font"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_font"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="13sp"
+                        android:text="@string/web_content_font"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/web_ll_collection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_collection_normal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:textSize="13sp"
+                        android:text="@string/web_content_collection"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

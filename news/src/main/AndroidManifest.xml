@@ -4,6 +4,7 @@
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.write_external_storage"/>
 
     <!-- ###################声明SDK使用的相关权限###################### -->
@@ -28,6 +29,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppThemeBlue" >
+
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/app_name" >
@@ -40,6 +42,11 @@
 
         <activity
             android:name=".ui.activity.BaseActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".ui.activity.WebActivity"
             android:screenOrientation="portrait">
         </activity>
 

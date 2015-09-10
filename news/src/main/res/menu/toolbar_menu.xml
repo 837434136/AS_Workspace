@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item android:id="@+id/action_add"
+          android:title="@string/weg_content_refresh"
+          android:orderInCategory="100"
+          android:icon="@drawable/web_view_refresh_selector"
+          app:showAsAction="always"
+          />
+
+</menu>

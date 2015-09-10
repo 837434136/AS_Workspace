@@ -3,9 +3,14 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="main_toolbar_title">忆斯年日报</string>
     <string name="main_hot">热点</string>
     <string name="main_school">学校</string>
     <string name="main_secretary">学小秘</string>
+
+    <string name="weg_content_refresh">refreshing</string>
+    <string name="web_content_share">分享</string>
+    <string name="web_content_thumb">点赞</string>
+    <string name="web_content_font">字体</string>
+    <string name="web_content_collection">收藏</string>
 </resources>

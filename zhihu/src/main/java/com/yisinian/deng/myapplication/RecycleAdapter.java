@@ -45,7 +45,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    //用来把数据绑定到视图上
+    //用来创建一个视图
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 //        View view = new View(parent.getContext());
         Context context = parent.getContext();

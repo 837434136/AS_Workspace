@@ -12,12 +12,19 @@ public class Daily implements Serializable{
 
     @SerializedName("images")
     public List<String> images;
+
     @SerializedName("type")
     public int type;
+
     @SerializedName("id")
     public int id;
+
     @SerializedName("title")
     public String title;
+
+    @SerializedName("ga_prefix")
+    public String ga_prefix;
+
     @SerializedName("multipic")
     public boolean multipic;
 }

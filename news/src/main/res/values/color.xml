@@ -8,4 +8,5 @@
     <color name="common_progress_dialog_while">#ffffff</color>
     <color name="activity_main_color_text_normal">#CCCCCC</color>
     <color name="activity_main_color_text_click">#ffffff</color>
+    <color name="activity_toolbar_title">#000000</color>
 </resources>

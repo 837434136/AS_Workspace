@@ -1,11 +1,13 @@
 package com.yisinian.news.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import com.yisinian.news.common.Constants;
 import com.yisinian.news.ui.activity.MainActivity;
 import com.yisinian.news.ui.adapter.HotAdapter;
 import com.yisinian.news.utils.NewsLog;
+import com.yisinian.news.utils.ToastUtils;
 
 import org.apache.http.Header;
 
@@ -50,9 +53,12 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             if (response.stories != null){
                 for (Daily item : response.stories){
                     mList.add(item);
+                    NewsLog.i(TAG,"---> " + mList.size());
                 }
-                mAdapter.updateData(mList);
+//                mAdapter.updateData(mList);
+                mAdapter.notifyDataSetChanged();
             }
+
         }
 
         @Override
@@ -73,6 +79,18 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+//        hotSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.hot_swipe_refresh_layout);
+//        hotSwipeRefreshLayout.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                hotSwipeRefreshLayout.setRefreshing(true);
+//            }
+//        }, 3000);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_hot, container, false);
@@ -87,6 +105,12 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         displayImageOptions = MainActivity.instance.displayImageOptions;
         hotSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.hot_swipe_refresh_layout);
         hotSwipeRefreshLayout.setOnRefreshListener(this);
+        hotSwipeRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hotSwipeRefreshLayout.setRefreshing(false);
+            }
+        }, 3000);
         hotSwipeRefreshLayout.setColorSchemeResources(R.color.color_primary_blue);
         initRecyclerView();
 
@@ -103,12 +127,16 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         mAdapter = new HotAdapter(getActivity(), mList);
         hotRecyclerview.setAdapter(mAdapter);
 
-        //拉去知乎某一天的新闻
+        //拉去知乎最新一天的新闻
         Calendar dateToGetUrl = Calendar.getInstance();
         String date = Constants.simpleDateFormat.format(dateToGetUrl.getTime());
         NewsLog.i(TAG,"---> date :" + date);
-
-        String url = ApiConstants.getDailyNewsUrl(date);
+        String dateLast = "";
+        if (!TextUtils.isEmpty(date)){
+            int dateLastInt = Integer.parseInt(date) + 1;
+            dateLast = String.valueOf(dateLastInt);
+        }
+        String url = ApiConstants.getDailyNewsUrl(dateLast);
         mClient.get(getActivity(), url, mResponseHandler);
     }
 
@@ -121,6 +149,7 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 hotSwipeRefreshLayout.setRefreshing(false);
             }
         }, 3000);
+        ToastUtils.showShort("--->onRefresh");
     }
 
     @Override

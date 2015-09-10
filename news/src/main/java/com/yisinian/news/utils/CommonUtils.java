@@ -3,6 +3,8 @@ package com.yisinian.news.utils;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import com.yisinian.news.R;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -98,5 +100,9 @@ public class CommonUtils {
         int toolbarHeight = (int) styledAttributes.getDimension(0, 0);
         styledAttributes.recycle();
         return toolbarHeight;
+    }
+
+    public static int getTabsHeight(Context context){
+        return (int) context.getResources().getDimension(R.dimen.activity_main_tabs_height);
     }
 }

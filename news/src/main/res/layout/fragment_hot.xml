@@ -8,7 +8,10 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/hot_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:fadeScrollbars="true"
+        android:overScrollMode="never">
 
     </android.support.v7.widget.RecyclerView>
 

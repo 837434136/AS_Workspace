@@ -5,7 +5,7 @@ import java.util.Locale;
 
 /**
  * Created by deng on 2015/8/28.
- * Description: user tools
+ * Description: user always use tools
  */
 public class Constants {
 
@@ -18,6 +18,7 @@ public class Constants {
         public static final String SETTING_STATUS="status";
         public static final String VISITOR="visitor";
         public static final String UMENGLOGIN = "com.umeng.login";
-
+        public static final String CONTENT_TTTLE = "content_title";
+        public static final String CONTENT_URL = "content_url";
 
 }

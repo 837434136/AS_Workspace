@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:elevation="4dp">
+    app:elevation="4dp"
+    android:id="@+id/base_app_bar_layout">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/base_toolbar"
