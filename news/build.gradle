@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -39,4 +40,6 @@ dependencies {
     compile files('libs/SocialSDK_WeiXin_2.jar')
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.loopj.android:android-async-http:1.4.8'
+    compile files('libs/SocialSDK_UserCenter.jar')
+    compile files('libs/SocialSDK_AtFriends.jar')
 }

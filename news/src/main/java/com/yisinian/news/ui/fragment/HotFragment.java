@@ -102,7 +102,6 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 //                DividerItemDecoration.VERTICAL_LIST));
         mAdapter = new HotAdapter(getActivity(), mList);
         hotRecyclerview.setAdapter(mAdapter);
-
         //拉去知乎某一天的新闻
         Calendar dateToGetUrl = Calendar.getInstance();
         String date = Constants.simpleDateFormat.format(dateToGetUrl.getTime());

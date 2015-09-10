@@ -18,6 +18,12 @@ public class Constants {
         public static final String SETTING_STATUS="status";
         public static final String VISITOR="visitor";
         public static final String UMENGLOGIN = "com.umeng.login";
+        public static final String UMENGSHARE = "com.umeng.share";
+        public static final String IMAGE_URL = "image_url";
+        public static final String USERNAME = "user_name";
+
+        public static final String CONTENT_TTTLE = "content_title";
+        public static final String CONTENT_URL = "content_url";
 
 
 }
