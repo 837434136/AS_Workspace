@@ -20,6 +20,8 @@ import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
+import com.umeng.socialize.utils.OauthHelper;
+import com.umeng.socialize.weixin.controller.UMWXHandler;
 import com.yisinian.news.R;
 import com.yisinian.news.common.Constants;
 import com.yisinian.news.ui.adapter.LoginSettingAdapter;
@@ -31,10 +33,13 @@ import java.util.Map;
 
 
 /**
+ * 新浪微博、腾讯微博、豆瓣、人人网、QQ在执行分享前需要先进行授权操作， 其他平台可以直接调用分享API接口。
+ * QQ分享时不支持纯图片分享
  * Created by HandsomeBoy on 2015/9/1.
  */
 public class SettingActivity extends BaseActivity {
 
+    private static final int JUMP = 28;
     private final String TAG = getClass().getSimpleName();
     private UMSocialService mController = UMServiceFactory
             .getUMSocialService(Constants.UMENGLOGIN);
@@ -45,6 +50,7 @@ public class SettingActivity extends BaseActivity {
     private SharedPreferences sharedpreferences;
     private SharedPreferences.Editor editor;
     private String status;
+    private Boolean ISLOGIN = false;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -55,6 +61,7 @@ public class SettingActivity extends BaseActivity {
         if (status.equals(Constants.VISITOR)) {
             myAdapter = new VisitorSettingAdapter(getApplicationContext());
             listView.setAdapter(myAdapter);
+//            listView.setDividerHeight(0);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,7 +73,7 @@ public class SettingActivity extends BaseActivity {
                             login(SHARE_MEDIA.QQ);
                             break;
                         case 2:
-                            ToastUtils.showShort("click 微信登陆...");
+                            login(SHARE_MEDIA.WEIXIN);
                             break;
                         case 3:
                             ToastUtils.showShort("click 版本更新...");
@@ -74,16 +81,18 @@ public class SettingActivity extends BaseActivity {
                     }
                 }
             });
-        }else {
+        }else if (OauthHelper.isAuthenticated(SettingActivity.this, SHARE_MEDIA.SINA)
+                || OauthHelper.isAuthenticated(SettingActivity.this, SHARE_MEDIA.QQ)
+                || OauthHelper.isAuthenticated(SettingActivity.this, SHARE_MEDIA.WEIXIN) ){
             switch (status) {
                 case Constants.QQ:
-                    getUserInfo(SHARE_MEDIA.QQ);
+                    getUserInfo(SHARE_MEDIA.QQ, false);
                     break;
                 case Constants.WEIXIN:
-                    getUserInfo(SHARE_MEDIA.WEIXIN);
+                    getUserInfo(SHARE_MEDIA.WEIXIN, false);
                     break;
                 case Constants.SINA:
-                    getUserInfo(SHARE_MEDIA.SINA);
+                    getUserInfo(SHARE_MEDIA.SINA, false);
                     break;
             }
             myAdapter2 = new LoginSettingAdapter(getApplicationContext());
@@ -119,6 +128,7 @@ public class SettingActivity extends BaseActivity {
                 }
             });
         }
+
     }
 
     private void refresh() {
@@ -133,16 +143,25 @@ public class SettingActivity extends BaseActivity {
         UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(SettingActivity.this, "100424468",
                 "c7394704798a158208a74ab60104f0ba");
         qqSsoHandler.addToSocialSDK();
-//        UMWXHandler wxHandler = new UMWXHandler(SettingActivity.this,appId,appSecret);
-//        wxHandler.addToSocialSDK();
+
+        String appID = "wx967daebe835fbeac";
+        String appSecret = "5fa9e68ca3970e87a1f83e563c8dcbce";
+// 添加微信平台
+        UMWXHandler wxHandler = new UMWXHandler(SettingActivity.this,appID,appSecret);
+        wxHandler.addToSocialSDK();
+// 添加微信朋友圈
+        UMWXHandler wxCircleHandler = new UMWXHandler(SettingActivity.this,appID,appSecret);
+        wxCircleHandler.setToCircle(true);
+        wxCircleHandler.addToSocialSDK();
         initToolbar();
-        sharedpreferences = SettingActivity.this.getSharedPreferences(Constants.SHAREDPREFERENCES, MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(Constants.SHAREDPREFERENCES, MODE_PRIVATE);
         editor = sharedpreferences.edit();
         status = sharedpreferences.getString(Constants.SETTING_STATUS,Constants.VISITOR);
     }
 
 
     private void initToolbar() {
+
         mToolbar.setTitle("设置");
         mToolbar.setTitleTextColor(getResources().getColor(R.color.activity_main_color_text_click));
         setSupportActionBar(mToolbar);
@@ -151,14 +170,15 @@ public class SettingActivity extends BaseActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                prepareIntent(MainActivity.class);
                 finish();
             }
-
         });
 
     }
 
     private void login(final SHARE_MEDIA platform) {
+
         mController.doOauthVerify(SettingActivity.this, platform, new SocializeListeners.UMAuthListener() {
 
             @Override
@@ -176,8 +196,8 @@ public class SettingActivity extends BaseActivity {
                 String uid = value.getString("uid");
                 String openid = value.getString("openid");
                 if (!TextUtils.isEmpty(uid)) {
-                    getUserInfo(platform);
-                    SettingActivity.this.finish();
+                    getUserInfo(platform, true);
+
                 } else {
                     ToastUtils.showShort("授权失败");
                 }
@@ -194,7 +214,7 @@ public class SettingActivity extends BaseActivity {
     /**
      * 获取授权平台的用户信息</br>
      */
-    private void getUserInfo(final SHARE_MEDIA platform) {
+    private void getUserInfo(final SHARE_MEDIA platform, final Boolean isLogin) {
         mController.getPlatformInfo(SettingActivity.this, platform, new SocializeListeners.UMDataListener() {
 
             @Override
@@ -203,9 +223,8 @@ public class SettingActivity extends BaseActivity {
 
             @Override
             public void onComplete(int status, Map<String, Object> info) {
-                String showText = "用户名：" + info.get("screen_name").toString();
                 if (info != null) {
-                    switch (platform.toString()){
+                    switch (platform.toString()) {
                         case Constants.SINA:
                             editor.putString(Constants.SETTING_STATUS, Constants.SINA);
                             break;
@@ -216,10 +235,15 @@ public class SettingActivity extends BaseActivity {
                             editor.putString(Constants.SETTING_STATUS, Constants.WEIXIN);
                             break;
                     }
-                    editor.putString("user_name", info.get("screen_name").toString());
-                    editor.putString("image_url", info.get("profile_image_url").toString());
+                    editor.putString(Constants.USERNAME, info.get("screen_name").toString());
+                    editor.putString(Constants.IMAGE_URL, info.get("profile_image_url").toString());
                     editor.commit();
-                    NewsLog.e(TAG, info.toString());
+                    if (isLogin) {
+                        prepareIntent(MainActivity.class);
+                        finish();
+                    }
+                    NewsLog.e(TAG, info.get("profile_image_url").toString());
+
                 }
             }
         });
@@ -241,7 +265,7 @@ public class SettingActivity extends BaseActivity {
                 String showText = "解除" + platform.toString() + "平台授权成功";
                 if (status != StatusCode.ST_CODE_SUCCESSED) {
                     showText = "解除" + platform.toString() + "平台授权失败[" + status + "]";
-                }else {
+                } else {
                     editor.putString(Constants.SETTING_STATUS, Constants.VISITOR);
                     editor.commit();
                     ImageLoader.getInstance().clearDiskCache();
@@ -252,9 +276,23 @@ public class SettingActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 该方法用作跳转是调用
+     *
+     * @param clz
+     * @return
+     */
+    private boolean prepareIntent(Class clz) {
+        startActivity(new Intent(SettingActivity.this, clz));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        return true;
+    }
 
-
-
+    @Override
+    public void onBackPressed() {
+        prepareIntent(MainActivity.class);
+        finish();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -265,4 +303,5 @@ public class SettingActivity extends BaseActivity {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
     }
+
 }

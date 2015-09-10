@@ -120,7 +120,7 @@ public class LoginSettingAdapter extends BaseAdapter {
                 String imageUrl = sharedpreferences.getString("image_url", "http://i1.hdslb.com/user/22584/2258490/myface.jpg");
                 String userName = sharedpreferences.getString("user_name", "智障");
                 ImageLoader.getInstance().displayImage(imageUrl, holder1.ivIcon, DisplayOptions.getlistoptions());
-                holder1.tvIcon.setText(Html.fromHtml("<u>" + "userName" + "</u>"));
+                holder1.tvIcon.setText(Html.fromHtml("<u>" + userName + "</u>"));
                 break;
             case TYPE_5:
                 holder2.tvTitle.setText("版本更新");

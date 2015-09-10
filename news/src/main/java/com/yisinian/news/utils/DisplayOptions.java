@@ -33,7 +33,7 @@ public class DisplayOptions {
                         // .decodingoptions(android.graphics.bitmapfactory.options*
                         // decodingoptions)//设置图片的解码配置
                         // 设置图片下载前的延迟
-                .delayBeforeLoading(100)// int
+                .delayBeforeLoading(0)// int
                         // delayinmillis为你设置的延迟时间
                         // 设置图片加入缓存前，对bitmap进行设置
                         // .preprocessor(bitmapprocessor preprocessor)
