@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
 <merger version="3"><dataSet config="main"><source path="F:\AS_Workspace\circleimageview\src\main\assets"/></dataSet><dataSet config="debug"><source path="F:\AS_Workspace\circleimageview\src\debug\assets"/></dataSet></merger>
+=======
+<merger version="3"><dataSet config="main"><source path="E:\AS_Workspace\circleimageview\src\main\assets"/></dataSet><dataSet config="debug"><source path="E:\AS_Workspace\circleimageview\src\debug\assets"/></dataSet></merger>
+>>>>>>> Stashed changes
