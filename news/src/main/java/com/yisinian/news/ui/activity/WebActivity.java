@@ -89,6 +89,7 @@ public class WebActivity extends ToolbarActivity implements View.OnClickListener
     }
 
     private void addListener() {
+        mLlShare.setOnClickListener(this);
         mLlThumb.setOnClickListener(this);
     }
 
@@ -97,6 +98,7 @@ public class WebActivity extends ToolbarActivity implements View.OnClickListener
         mProgressBar = (ProgressBar) findViewById(R.id.web_progressbar);
         mWebView = (ScrollWebView) findViewById(R.id.web_view);
         mRlBottom = (RelativeLayout) findViewById(R.id.web_Rl_bottom);
+        mLlShare = (LinearLayout) findViewById(R.id.web_ll_share);
         mLlThumb = (LinearLayout) findViewById(R.id.web_ll_thumb);
         mImgThumb = (ImageView) findViewById(R.id.web_img_thumb);
         mTvThumb = (TextView) findViewById(R.id.web_tv_thumb);
@@ -162,6 +164,13 @@ public class WebActivity extends ToolbarActivity implements View.OnClickListener
     public void onClick(View v) {
 
         switch (v.getId()){
+
+            case R.id.web_ll_share:
+
+                mController.openShare(WebActivity.this, false);//是否只有已登录用户才能打开分享选择页
+
+                break;
+
             case R.id.web_ll_thumb:
                 mController.likeChange(WebActivity.this, new SocializeListeners.SocializeClientListener() {
                     @Override

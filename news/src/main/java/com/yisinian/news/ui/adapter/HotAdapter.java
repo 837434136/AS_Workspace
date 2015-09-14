@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yisinian.news.R;
 import com.yisinian.news.api.ApiConstants;
 import com.yisinian.news.bean.Daily;
@@ -63,7 +62,7 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ItemViewHolder>{
     public void onBindViewHolder(ItemViewHolder holder, int position) {
        final Daily daily = mList.get(position);
         holder.mTv.setText(daily.title);
-        ImageLoader.getInstance().displayImage(daily.images.get(0), holder.mImg);
+//        ImageLoader.getInstance().displayImage(daily.images.get(0), holder.mImg);
 
     }
 
