@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< Updated upstream
-<merger version="3"><dataSet config="main"><source path="F:\AS_Workspace\circleimageview\src\main\res"><file path="F:\AS_Workspace\circleimageview\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="CircleImageView">
-        <attr format="dimension" name="border_width"/>
-        <attr format="color" name="border_color"/>
-        <attr format="boolean" name="border_overlay"/>
-    </declare-styleable></file></source><source path="F:\AS_Workspace\circleimageview\build\generated\res\rs\debug"/><source path="F:\AS_Workspace\circleimageview\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug"><source path="F:\AS_Workspace\circleimageview\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CircleImageView"><attr format="dimension" name="border_width"/><attr format="color" name="border_color"/><attr format="boolean" name="border_overlay"/></declare-styleable></configuration></mergedItems></merger>
-=======
 <merger version="3"><dataSet config="main"><source path="E:\AS_Workspace\circleimageview\src\main\res"><file path="E:\AS_Workspace\circleimageview\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="CircleImageView">
         <attr format="dimension" name="border_width"/>
         <attr format="color" name="border_color"/>
         <attr format="boolean" name="border_overlay"/>
     </declare-styleable></file></source><source path="E:\AS_Workspace\circleimageview\build\generated\res\rs\debug"/><source path="E:\AS_Workspace\circleimageview\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug"><source path="E:\AS_Workspace\circleimageview\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CircleImageView"><attr format="dimension" name="border_width"/><attr format="color" name="border_color"/><attr format="boolean" name="border_overlay"/></declare-styleable></configuration></mergedItems></merger>
->>>>>>> Stashed changes

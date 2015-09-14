@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.yisinian.news.common.Constants;
 import com.yisinian.news.ui.activity.MainActivity;
 import com.yisinian.news.ui.adapter.HotAdapter;
 import com.yisinian.news.utils.NewsLog;
+import com.yisinian.news.utils.ToastUtils;
 
 import org.apache.http.Header;
 
@@ -106,9 +108,15 @@ public class HotFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         Calendar dateToGetUrl = Calendar.getInstance();
         String date = Constants.simpleDateFormat.format(dateToGetUrl.getTime());
         NewsLog.i(TAG,"---> date :" + date);
-
-        String url = ApiConstants.getDailyNewsUrl(date);
-        mClient.get(getActivity(), url, mResponseHandler);
+        int leastDate = 0;
+        if (!TextUtils.isEmpty(date)){
+            int dateInt = Integer.parseInt(date);
+            leastDate = dateInt + 1;
+            String url = ApiConstants.getDailyNewsUrl(leastDate + "");
+            mClient.get(getActivity(), url, mResponseHandler);
+        }else {
+            ToastUtils.showShort("Invaild Date");
+        }
     }
 
     @Override

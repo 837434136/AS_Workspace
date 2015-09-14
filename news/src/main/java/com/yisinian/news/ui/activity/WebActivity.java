@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -111,13 +112,29 @@ public class WebActivity extends ToolbarActivity implements View.OnClickListener
     }
 
     private void setWebView() {
+
+        WebSettings ws = mWebView.getSettings();
+        ws.setUseWideViewPort(true);
+        ws.setJavaScriptEnabled(true);
+        ws.setSupportZoom(true);//设置可以支持缩放
+        ws.setDefaultZoom(WebSettings.ZoomDensity.FAR);
+//        ws.setDefaultFontSize(16);//设置默认字体的大小
+
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.setWebChromeClient(new ChromeClient());
-        mWebView.setWebViewClient(new ViewClient());
+        mWebView.setWebViewClient(new ViewClient());//设置用webView打开内部链接
         mWebView.getSettings().setLoadWithOverviewMode(true);
         mWebView.getSettings().setAppCacheEnabled(true);
         mWebView.loadUrl(mUrl);
         setTitle(mTitle);
+    }
+
+    private class InnerWebViewClient extends WebViewClient{
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
     }
 
     private void showAndHideBottom(int dy) {

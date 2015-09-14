@@ -41,6 +41,7 @@ import com.yisinian.news.ui.adapter.FragmentAdapter;
 import com.yisinian.news.ui.fragment.HotFragment;
 import com.yisinian.news.ui.fragment.SchoolFragment;
 import com.yisinian.news.ui.fragment.SecretaryFragment;
+import com.yisinian.news.utils.DensityUtils;
 import com.yisinian.news.utils.DisplayOptions;
 import com.yisinian.news.utils.NewsLog;
 import com.yisinian.news.utils.ToastUtils;
@@ -187,19 +188,23 @@ public class MainActivity extends BaseActivity {
 
                 @Override
                 public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-                    mToolbar.setNavigationIcon(new BitmapDrawable(bitmap));
-                }
+                    Bitmap bm = Bitmap.createScaledBitmap(bitmap, DensityUtils.dip2px(MainActivity.this, 80),
+                            DensityUtils.dip2px(MainActivity.this, 80), false);
+                    bm.isRecycled();
+                    mToolbar.setNavigationIcon(new BitmapDrawable(bm));
+            }
 
                 @Override
                 public void onLoadingCancelled(String s, View view) {
 
-                }
-            });
+            }
+        });
 
-        }else {
-            NewsLog.e("yue_chou","user_avatar");
-            NewsLog.e("yue_chou",getSharedPreferences(Constants.SHAREDPREFERENCES, MODE_PRIVATE)
+    }else {
+        NewsLog.e("yue_chou", "user_avatar");
+        NewsLog.e("yue_chou", getSharedPreferences(Constants.SHAREDPREFERENCES, MODE_PRIVATE)
                     .getString(Constants.IMAGE_URL, ""));
+            //初始化
             mToolbar.setNavigationIcon(R.mipmap.user_avatar);
         }
     }
